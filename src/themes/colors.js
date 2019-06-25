@@ -27,5 +27,6 @@ export default {
   marker: "#FF9C6B",
   light: "#A8A8A8",
   ForestGreen: "#0D9800",
-  light2: "#AFB3B4"
+  light2: "#AFB3B4",
+  snow: "#F4F4F5"
 };

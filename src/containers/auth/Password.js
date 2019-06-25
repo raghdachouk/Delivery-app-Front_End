@@ -24,6 +24,7 @@ import FormContainer from "../../components/common/FormContainer";
 const styles = StyleSheet.create({
   widthInput: {
     ...fonts.medium,
+    fontFamily: "proximaNovaReg",
     height: metrics.doubleBaseMargin,
     width: metrics.width - scale(80)
   },
@@ -102,7 +103,7 @@ export default class Password extends React.PureComponent {
           })
           .catch(e => {
             Keyboard.dismiss();
-            this.setState({ loading, error: e.message });
+            this.setState({ error: e.message });
           });
       } else {
         this.props.navigation.navigate("Register", {

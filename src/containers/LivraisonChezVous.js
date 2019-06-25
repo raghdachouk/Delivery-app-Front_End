@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { metrics, colors } from "../themes";
+import { scale } from "../helpers/functions";
 
 export default class LivraisonChezVous extends Component {
   render() {
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
     borderColor: colors.dimGrey2
   },
   txtInput: {
+    fontFamily: "proximaNovaReg",
     margin: metrics.smallMargin,
-    height: metrics.doubleMediumMargin
+    height: metrics.doubleBaseMargin
   }
 });

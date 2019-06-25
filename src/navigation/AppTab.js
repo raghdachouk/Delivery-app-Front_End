@@ -1,84 +1,71 @@
 import React from "react";
-import {
-  createBottomTabNavigator,
-  createAppContainer,
-  createStackNavigator
-} from "react-navigation";
-import Icon from "react-native-vector-icons/Feather";
+import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { Image } from "react-native";
+import PropTypes from "prop-types";
 
 import HomeNavigation from "./HomeNavigation";
-import Search from "../components/tabFeature/Search";
-import Shopping from "../components/tabFeature/Shopping";
-import Profile from "../components/tabFeature/Profile";
-import Bag from "../components/tabFeature/Bag";
-import HeaderSearch from "../components/common/HeaderSearch";
+import ProfileNav from "./ProfileNav";
+import SearchNavigate from "./SearchNavigate";
+import CommandeNavigation from "./CommandeNavigation";
+import PanierNavigation from "./PanierNavigation";
 
-// const Home = createStackNavigator(
-//   {
-//     profile: {
-//       screen: Profile,
-//       path: '/',
-//     },
-//     options: {
-//       screen: Options,
-//       path: '/',
-//     },
-//   },
-//   {
-//     mode: 'card',
-//   }
-// )
+import { scale } from "../helpers/functions";
+import { colors } from "../themes";
+import icons from "../themes/icons";
+
+const getTabBarIcon = (navigation, tintColor) => {
+  const { routeName } = navigation.state;
+  let iconName;
+  if (routeName === "Home") {
+    iconName = icons.home;
+  } else if (routeName === "Search") {
+    iconName = icons.recherche;
+  } else if (routeName === "Shopping") {
+    iconName = icons.panier;
+  } else if (routeName === "Shopping") {
+    iconName = icons.panier;
+  } else if (routeName === "Bag") {
+    iconName = icons.commande;
+  } else if (routeName === "Profile") {
+    iconName = icons.profil;
+  }
+
+  return <Image source={iconName} style={{ tintColor: tintColor }} />;
+};
+
+getTabBarIcon.propTypes = {
+  navigation: PropTypes.object,
+  tintColor: PropTypes.string
+};
 const AppTab = createBottomTabNavigator(
   {
     Home: {
-      screen: HomeNavigation,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="home" color={tintColor} size={30} />
-        )
-      }
+      screen: HomeNavigation
     },
     Search: {
-      screen: Search,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="search" color={tintColor} size={30} />
-        )
-      }
+      screen: SearchNavigate
     },
     Shopping: {
-      screen: Shopping,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="shopping-cart" color={tintColor} size={30} />
-        )
-      }
+      screen: PanierNavigation
     },
     Bag: {
-      screen: Bag,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="shopping-bag" color={tintColor} size={30} />
-        )
-      }
+      screen: CommandeNavigation
     },
     Profile: {
-      screen: Profile,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="user" color={tintColor} size={30} />
-        )
-      }
-      // screen:profilNav
+      screen: ProfileNav
     }
   },
   {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ tintColor }) => getTabBarIcon(navigation, tintColor)
+    }),
     tabBarOptions: {
-      activeTintColor: "#0D9800",
-      inactiveTintColor: "grey",
+      activeTintColor: colors.ForestGreen,
+      inactiveTintColor: colors.grey,
       showLabel: false,
       style: {
-        backgroundColor: "white",
+        padding: scale(10),
+        backgroundColor: colors.white,
         borderTopWidth: 0,
         shadowOffset: { width: 5, height: 3 },
         shadowColor: "black",
@@ -88,27 +75,84 @@ const AppTab = createBottomTabNavigator(
     }
   }
 );
+// const setTabBarVisible = (navigation) => {
+// 	let tabBarVisible = true;
+// 	//const { routeName } = navigation.state;
+// 	const { routeName } = navigation.state.routes[navigation.state.index].routeName;
 
-// const profilNav =createStackNavigator({
-//     infoPers: {screen: InfoPersonnelle},
-//     paiement :{screen :Paiemenet},
-//     param :{screen:Parametre},
-//     help :{screen :Help}
-// })
-const stackapp = createStackNavigator({
-  AppTab: {
-    screen: AppTab,
-    navigationOptions: {
-      headerTitle: <HeaderSearch />,
-      headerStyle: {
-        elevation: 0,
-        shadowOpacity: 0,
-        shadowOffset: {
-          height: 0
-        },
-        shadowRadius: 0
-      }
-    }
+// 	if (routeName != 'Profile') {
+// 		tabBarVisible = false;
+// 	} else if (routeName != 'Home') {
+// 		tabBarVisible = false;
+// 	} else if (routeName != 'Search') {
+// 		tabBarVisible = false;
+// 	} else if (routeName != 'Shopping') {
+// 		tabBarVisible = false;
+// 	} else if (routeName != 'Bag') {
+// 		tabBarVisible = false;
+// 	}
+
+// 	return {
+// 		tabBarVisible
+// 	};
+// };
+ProfileNav.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+  let headerVisible = true;
+  if (routeName != "Profile") {
+    tabBarVisible = false;
+    headerVisible = false;
   }
-});
-export default createAppContainer(stackapp);
+
+  return {
+    tabBarVisible,
+    headerVisible
+  };
+};
+HomeNavigation.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+  if (routeName != "Home") {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+SearchNavigate.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+  if (routeName != "Result") {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+CommandeNavigation.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+  if (routeName != "Commandes") {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+PanierNavigation.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+  if (routeName != "Panier") {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+
+export default createAppContainer(AppTab);

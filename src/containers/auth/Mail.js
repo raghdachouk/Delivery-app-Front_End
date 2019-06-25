@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   widthInput: {
     height: metrics.doubleBaseMargin,
     width: metrics.width - scale(60),
-    ...fonts.medium
+    ...fonts.medium,
+    fontFamily: "proximaNovaReg"
   },
   inputSection: {
     backgroundColor: colors.backGrey,

@@ -5,29 +5,47 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Dimensions,
   KeyboardAvoidingView,
   TextInput
 } from "react-native";
-
+import PropTypes from "prop-types";
 import MapView, { Marker } from "react-native-maps";
+
 import Icon from "react-native-vector-icons/MaterialIcons";
 import IconIcon from "react-native-vector-icons/Ionicons";
+
 import metrics from "../../../themes/metrics";
 import colors from "../../../themes/colors";
 import { scale } from "../../../helpers/functions";
+import Title from "../../common/Title";
 export default class Panier extends Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  };
+  static navigationOption = ({ navigation }) => ({
+    headerTitle: <Title title={"Votre panier"} navigate={navigation} />
+  });
   constructor(props) {
     super(props);
     this.state = {
-      text: "" ? code : ""
+      text: "",
+      code: ""
     };
   }
+  payer = () => {
+    this.props.navigation.navigate("map");
+  };
+  ajoutCode = code => {
+    this.setState({ code });
+  };
+  ajoutComment = text => {
+    this.setState({ text });
+  };
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <KeyboardAvoidingView behavior="position">
+          <KeyboardAvoidingView behavior="padding">
             <View style={styles.view1}>
               <Text style={styles.name}>Nom resturant</Text>
               <View style={styles.duree}>
@@ -98,7 +116,7 @@ export default class Panier extends Component {
               style={styles.input}
               numberOfLines={2}
               multiline={true}
-              onChangeText={text => this.setState({ text })}
+              onChangeText={this.ajoutComment}
               value={this.state.text}
             />
 
@@ -132,11 +150,11 @@ export default class Panier extends Component {
               <TextInput
                 placeholder="AJOUTER UN CODE PRPMOTIONNEL"
                 style={styles.inputStyle}
-                onChangeText={code => this.setState({ code })}
+                onChangeText={this.ajoutCode}
                 value={this.state.code}
               />
             </View>
-            <TouchableOpacity activeOpacity={0.8}>
+            <TouchableOpacity activeOpacity={0.8} onPress={this.payer}>
               <Text style={styles.greenbutton}>PAYER</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
@@ -148,13 +166,12 @@ export default class Panier extends Component {
 const styles = StyleSheet.create({
   greenbutton: {
     width: metrics.width,
-    height: scale(45),
     backgroundColor: colors.green,
     borderRadius: 1,
     color: colors.white,
-    fontSize: scale(15),
-    fontWeight: "bold",
-    paddingVertical: metrics.smallMargin,
+    fontSize: scale(16),
+    fontFamily: "proximaNovaBold",
+    paddingVertical: metrics.baseMargin,
     paddingHorizontal: metrics.baseMargin,
     textAlign: "center",
     alignItems: "center",
@@ -167,7 +184,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   name: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     fontSize: scale(22),
     color: colors.darkGrey3
   },
@@ -178,7 +195,8 @@ const styles = StyleSheet.create({
   },
   periode: {
     color: colors.darkGrey,
-    fontSize: scale(14)
+    fontSize: scale(14),
+    fontFamily: "proximaNovaReg"
   },
   styleMap: {
     overflow: "hidden",
@@ -208,8 +226,9 @@ const styles = StyleSheet.create({
     padding: metrics.smallMargin
   },
   loc: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     fontSize: scale(18),
+
     color: colors.darkGrey3
   },
   tait: {
@@ -220,10 +239,12 @@ const styles = StyleSheet.create({
     paddingRight: metrics.smallMargin
   },
   text1: {
+    fontFamily: "proximaNovaReg",
     color: colors.darkGrey3,
     fontSize: scale(17)
   },
   text2: {
+    fontFamily: "proximaNovaReg",
     color: colors.darkGrey,
     fontSize: scale(16)
   },
@@ -233,14 +254,17 @@ const styles = StyleSheet.create({
     paddingVertical: metrics.smallMargin
   },
   number: {
+    fontFamily: "proximaNovaReg",
     color: colors.darkGreen,
     fontSize: scale(16)
   },
   title: {
+    fontFamily: "proximaNovaReg",
     color: colors.grey,
     fontSize: scale(16)
   },
   textInput: {
+    fontFamily: "proximaNovaReg",
     color: colors.silver,
     fontSize: scale(16)
   },
@@ -252,7 +276,8 @@ const styles = StyleSheet.create({
     height: scale(70),
     width: "90%",
     textAlign: "center",
-    fontSize: scale(15)
+    fontSize: scale(15),
+    fontFamily: "proximaNovaReg"
   },
   textWithIcon: {
     flexDirection: "row",
@@ -272,21 +297,24 @@ const styles = StyleSheet.create({
     marginBottom: metrics.mediumMargin
   },
   text3: {
+    fontFamily: "proximaNovaReg",
     color: colors.silver,
     fontSize: scale(15)
   },
   textGreen: {
+    fontFamily: "proximaNovaReg",
     color: colors.darkGreen,
     fontSize: scale(15)
   },
   textGrey: {
+    fontFamily: "proximaNovaReg",
     color: colors.grey,
     fontSize: scale(15)
   },
   textBold: {
+    fontFamily: "proximaNovaBold",
     color: colors.grey,
-    fontSize: scale(15),
-    fontWeight: "bold"
+    fontSize: scale(15)
   },
   viewTotal: {
     flexDirection: "row",

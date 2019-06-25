@@ -7,6 +7,7 @@ import Password from "../containers/auth/Password";
 import Register from "../containers/auth/Register";
 
 import AppTab from "./AppTab";
+import DetailLivration from "../containers/DetailLivration";
 
 const navigationOptions = {
   headerStyle: {
@@ -41,7 +42,10 @@ const Navapp = createStackNavigator(
       screen: Register,
       navigationOptions
     },
-
+    DetailLivraison: {
+      screen: DetailLivration,
+      navigationOptions
+    },
     Home: {
       screen: AppTab,
       navigationOptions: {
@@ -50,7 +54,7 @@ const Navapp = createStackNavigator(
     }
   },
   {
-    initialRouteName: "FirstStep",
+    initialRouteName: "Home",
     navigationOptions: {
       headerStyle: {
         elevation: 0,

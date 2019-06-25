@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.grey2,
     height: scale(45),
+    fontFamily: "proximaNovaReg",
     borderRadius: 4,
     padding: metrics.smallMargin,
     margin: metrics.baseMargin,
@@ -49,19 +50,22 @@ const styles = StyleSheet.create({
   },
   widthInput: {
     ...fonts.medium,
+    fontFamily: "proximaNovaReg",
     height: metrics.doubleBaseMargin,
     width: metrics.width - metrics.doubleBaseMargin,
     alignItems: "center"
   },
   text: {
     marginTop: metrics.baseMargin,
+    fontFamily: "proximaNovaBold",
     ...fonts.medium,
     color: colors.grey,
-    fontWeight: "bold",
+
     paddingLeft: metrics.doubleMediumMargin
   },
   countryCode: {
     ...fonts.medium,
+    fontFamily: "proximaNovaReg",
     color: colors.grey
   }
 });

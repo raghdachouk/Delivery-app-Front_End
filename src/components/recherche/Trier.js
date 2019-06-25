@@ -1,40 +1,43 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+
 import metrics from "../../themes/metrics";
 import colors from "../../themes/colors";
 import { scale } from "../../helpers/functions";
+import icons from "../../themes/icons";
+
 export default class Trier extends Component {
   constructor(props) {
     super(props);
     this.state = {
       note: false,
-      delai: false
+      populaire: false,
+      closer: false
     };
   }
-  onNote(pressed) {
-    this.setState({ note: !pressed });
-  }
-  onDelai(pressed) {
-    this.setState({ delai: !pressed });
-  }
-  onFinish() {
+  onNote = () => {
+    this.setState({ note: true, populaire: false, closer: false });
+  };
+  onPopulaire = () => {
+    this.setState({ note: false, populaire: true, closer: false });
+  };
+  onCloser = () => {
+    this.setState({ note: false, populaire: false, closer: true });
+  };
+  onFinish = () => {
     if (this.state.note) return "note";
-    else if (this.state.delai) return "delai";
+    else if (this.state.populaire) return "populaire";
+    else if (this.state.closer) return "près";
     else return null;
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => {
-            this.onNote(this.state.note), this.setState({ delai: false });
-          }}
-        >
+        <TouchableOpacity activeOpacity={0.8} onPress={this.onNote}>
           <View style={styles.view1}>
-            <Icon name="star" size={scale(20)} color={colors.light} />
+            <Image source={icons.recommandes} />
             <Text style={styles.note}>Note</Text>
             {this.state.note && (
               <Icon
@@ -46,16 +49,25 @@ export default class Trier extends Component {
             )}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => {
-            this.onDelai(this.state.delai), this.setState({ note: false });
-          }}
-        >
+        <TouchableOpacity activeOpacity={0.8} onPress={this.onPopulaire}>
           <View style={styles.view1}>
-            <Icon name="timer" size={scale(20)} color={colors.light} />
-            <Text style={styles.delai}>Délai de livraison</Text>
-            {this.state.delai && (
+            <Image source={icons.mieuxnotes} />
+            <Text style={styles.delai}>Les plus populaires</Text>
+            {this.state.populaire && (
+              <Icon
+                name="check"
+                size={scale(22)}
+                color={colors.ForestGreen}
+                style={styles.iconpos}
+              />
+            )}
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.8} onPress={this.onCloser}>
+          <View style={styles.view1}>
+            <Image source={icons.proche} />
+            <Text style={styles.delai}>Les plus près de chez moi</Text>
+            {this.state.closer && (
               <Icon
                 name="check"
                 size={scale(22)}
@@ -69,7 +81,7 @@ export default class Trier extends Component {
         <View style={styles.view2}>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => this.props.navigation.navigate("Result")}
+            //onPress={() => this.props.navigation.navigate("Result")}
           >
             <Text style={styles.finish}>TERMINER</Text>
           </TouchableOpacity>
@@ -95,12 +107,12 @@ const styles = StyleSheet.create({
   },
   note: {
     color: colors.grey,
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     marginLeft: metrics.smallMargin
   },
   delai: {
     color: colors.grey,
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     marginLeft: metrics.smallMargin
   },
   trait: {
@@ -115,7 +127,7 @@ const styles = StyleSheet.create({
   },
   finish: {
     fontSize: scale(16),
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     color: colors.grey
   }
 });

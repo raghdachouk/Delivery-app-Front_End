@@ -2,21 +2,27 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import StarRating from "react-native-star-rating";
 import moment from "moment";
+import PropTypes from "prop-types";
+
 import metrics from "../themes/metrics";
 import colors from "../themes/colors";
 import { scale } from "../helpers/functions";
 
 const width = metrics.width;
 export default class TodoItems extends Component {
+  static propTypes = {
+    entries: PropTypes.array,
+    starCount: PropTypes.number
+  };
   constructor(props) {
     super(props);
     this.state = {
       review: ""
     };
-    this.createTasks = this.createTasks.bind(this);
+    //this.createTasks = this.createTasks.bind(this);
   }
 
-  createTasks(item) {
+  createTasks = item => {
     var date = new Date();
     var formattedDate = moment(date).format("MMM Do YYYY");
 
@@ -49,7 +55,7 @@ export default class TodoItems extends Component {
         <Text>{formattedDate} </Text>
       </View>
     );
-  }
+  };
 
   componentDidMount() {
     let review;

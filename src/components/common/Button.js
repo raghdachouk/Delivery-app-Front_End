@@ -1,7 +1,6 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component } from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
-
 import Spinner from "./Spinner";
 
 import { metrics, colors, fonts } from "../../themes";
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
   btnText: {
     ...fonts.h5,
     color: colors.white,
-    fontWeight: "bold"
+    fontFamily: "proximaNovaBold"
   },
   blackText: {
     color: colors.black
@@ -94,9 +93,6 @@ class Button extends Component {
       btnText,
       onPress,
       icon,
-      iconTheme,
-      iconColor,
-      iconSize,
       disabled,
       loading,
       spinnerColor
@@ -120,17 +116,12 @@ class Button extends Component {
             color={type === btnTypes.default ? colors.black : spinnerColor}
           />
         )}
-        {icon &&
-          (typeof icon === "string" ? (
-            <Icon
-              name={icon}
-              size={iconSize}
-              defaultColor={iconColor}
-              theme={iconTheme}
-            />
-          ) : (
-            icon
-          ))}
+        {/* {icon &&
+					(typeof icon === 'string' ? (
+						<Icon name={icon} size={iconSize} defaultColor={iconColor} theme={iconTheme} />
+					) : (
+						icon
+					))} */}
         <Text
           style={[
             styles.btnText,

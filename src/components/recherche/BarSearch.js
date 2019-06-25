@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Platform,
-  Dimensions
-} from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Animatable from "react-native-animatable";
-//import Modal from "react-native-modalbox";
 import Modal from "react-native-modal";
+
 import Filter from "./Filter";
+
 import colors from "../../themes/colors";
 import { scale } from "../../helpers/functions";
 import metrics from "../../themes/metrics";
@@ -26,53 +19,37 @@ export default class BarSearch extends Component {
       isVisible: false
     };
   }
-
-  clear = () => {
-    this.textInput.clear();
+  view = null;
+  setRef = ref => {
+    this.view = ref;
   };
-
-  increaseHeightOfLogin = () => {
-    Animated.timing(this.loginHeight, {
-      toValue: SCREEN_HEIGHT - 120,
-      duration: 500
-    }).start(() => {
-      this.refs.textInputMobile.focus();
-    });
+  // increaseHeightOfLogin = () => {
+  //   Animated.timing(this.loginHeight, {
+  //     toValue: SCREEN_HEIGHT - 120,
+  //     duration: 500
+  //   }).start(() => {
+  //     this.refs.textInputMobile.focus();
+  //   });
+  // };
+  onpress = () => {
+    this.view.slideInDown(800),
+      this.setState({ isVisible: !this.state.isVisible });
   };
-
+  onOpen = () => {
+    this.setState({ isVisible: false });
+  };
   render() {
     return (
       <View>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => {
-            this.view.slideInDown(800),
-              this.setState({ isVisible: !this.state.isVisible });
-          }}
-        >
-          <View style={styles.container}>
-            <Icon
-              name="ios-search"
-              size={scale(20)}
-              color={colors.lightGrey2}
-            />
-            <Text value={this.state.text} style={styles.rech}>
-              Recherche{" "}
-            </Text>
-          </View>
-          <Animatable.View
-            ref={ref => {
-              this.view = ref;
-            }}
-          >
+        <TouchableOpacity activeOpacity={0.8} onPress={this.onpress}>
+          <Icon name="twitter-retweet" size={scale(30)} color={colors.grey4} />
+          <Animatable.View ref={this.setRef}>
             <Modal
               style={styles.modalView}
-              position={"top"}
-              isOpen={this.state.isVisible}
-              backdropPressToClose={true}
-              coverScreen={true}
+              isVisible={this.state.isVisible}
+              onBackdropPress={this.onOpen}
+              hasBackdrop
               backdrop={true}
-              transparent={true}
               backdropOpacity={0.6}
             >
               <Filter />
@@ -85,10 +62,12 @@ export default class BarSearch extends Component {
 }
 const styles = StyleSheet.create({
   modalView: {
-    borderColor: colors.white,
     alignItems: "center",
-    height: scale(250),
-    width: width
+    flex: 0.45,
+    width: width,
+    backgroundColor: colors.white,
+    justifyContent: "flex-start",
+    margin: 0
   },
   container: {
     flexDirection: "row",
@@ -96,12 +75,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderBottomWidth: 1.5,
     borderBottomColor: colors.lightGrey2,
-    paddingHorizontal: metrics.baseMargin,
-    height: metrics.doubleBaseMargin
+    paddingHorizontal: metrics.baseMargin
+    //height: scale(45)
   },
   rech: {
     color: colors.lightGrey2,
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     alignItems: "center",
     backgroundColor: colors.white,
     width: scale(170)

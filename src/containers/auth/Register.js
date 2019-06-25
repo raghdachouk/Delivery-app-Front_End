@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
   widthInput: {
     height: metrics.doubleBaseMargin,
     width: scale(120),
-    fontSize: scale(16)
+    fontSize: scale(16),
+    fontFamily: "proximaNovaReg"
   },
   name: {
     flexDirection: "row",

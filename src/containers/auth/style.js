@@ -18,6 +18,7 @@ export default StyleSheet.create({
     justifyContent: "space-between"
   },
   label: {
+    fontFamily: "proximaNovaBold",
     ...fonts.h3,
     marginBottom: metrics.doubleBaseMargin,
     paddingHorizontal: metrics.smallMargin

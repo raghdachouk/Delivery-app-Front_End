@@ -1,19 +1,30 @@
-import { View, StyleSheet } from "react-native";
-import Ion from "react-native-vector-icons/FontAwesome";
 import React from "react";
+import { View, StyleSheet, Text } from "react-native";
+import PropTypes from "prop-types";
 import BarSearch from "../recherche/BarSearch";
-import colors from "../../themes/colors";
 import metrics from "../../themes/metrics";
-import { scale } from "../../helpers/functions";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
 export default class HeaderSearch extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  };
+  onpress = () => {
+    this.props.navigation.navigate("DetailLivraison");
+  };
   render() {
+    //const { adresse, possible } = this.props.navigate.state.params;
+    // const { possible } = this.props.navigation.getParams('possible');
+    // const { adresse } = this.props.navigation.getParams('adresse');
     return (
       <View style={styles.container}>
-        <Ion name="navicon" size={scale(25)} color={colors.lightGrey2} />
-
+        <TouchableOpacity activeOpacity={0.8} onPress={this.onpress}>
+          <Text numberOfLines={1} style={styles.text}>
+            {" "}
+            {/* {possible} {adresse} */}
+          </Text>
+        </TouchableOpacity>
         <BarSearch />
-
-        <Ion name="sliders" size={scale(25)} color={colors.lightGrey2} />
       </View>
     );
   }
@@ -23,6 +34,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
-    marginHorizontal: metrics.baseMargin
+    paddingHorizontal: metrics.mediumMargin,
+    paddingVertical: metrics.smallMargin
+    //height: scale(50)
+  },
+  text: {
+    fontFamily: "proximaNovaBold"
   }
 });

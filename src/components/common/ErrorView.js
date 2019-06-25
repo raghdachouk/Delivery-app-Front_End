@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     ...fonts.small,
     marginLeft: metrics.baseMargin,
     fontWeight: "bold",
-    color: colors.white
+    color: colors.white,
+    fontFamily: "proximaNovaBold"
   }
 });
 

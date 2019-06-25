@@ -6,23 +6,25 @@ import {
   TextInput,
   KeyboardAvoidingView,
   ScrollView,
-  Dimensions,
   StyleSheet,
   TouchableOpacity
 } from "react-native";
+import PropTypes from "prop-types";
 //import RadioGroup from 'react-native-radio-buttons-group';
 import { Avatar } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialIcons";
+
 import metrics from "../../../themes/metrics";
 import colors from "../../../themes/colors";
 import { scale } from "../../../helpers/functions";
-//import { RadioButton } from 'react-native-paper';
-const fullScreen = {
-  height: Dimensions.get("window").height,
-  width: Dimensions.get("window").width
-};
-const { height } = Dimensions.get("window");
+
 export default class UnProduit extends Component {
+  static navigationOptions = {
+    header: null
+  };
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -30,8 +32,6 @@ export default class UnProduit extends Component {
       checked: "first",
       screenHeight: 0
     };
-    this.onDecrease = this.onDecrease.bind(this);
-    this.onIncrease = this.onIncrease.bind(this);
   }
   onAdd = () => {
     if (this.state.count !== 0) {
@@ -54,17 +54,12 @@ export default class UnProduit extends Component {
       });
     }
   };
-  onContentSizeChange = (contentWidth, contentHeight) => {
-    // Save the content height in state
-    this.setState({ screenHeight: contentHeight });
+  goBack = () => {
+    this.props.navigation.goBack();
   };
   render() {
-    const { checked } = this.state;
-    const image = this.props.navigation.getParam("image", "NO-Category");
-    const name = this.props.navigation.getParam("name", "NO-Category");
-    const prix = this.props.navigation.getParam("prix", "NO-Category");
-    const desp = this.props.navigation.getParam("desp", "NO-Category");
-    const scrollEnabled = this.state.screenHeight > height;
+    const { image, name, prix, desp } = this.props.navigation.state.params;
+
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styles.container}>
@@ -75,7 +70,7 @@ export default class UnProduit extends Component {
               size={scale(30)}
               color={colors.white}
               style={styles.icon}
-              onPress={() => this.props.navigation.goBack()}
+              onPress={this.goBack}
             />
 
             <View style={styles.view1}>
@@ -93,7 +88,7 @@ export default class UnProduit extends Component {
                                 status={checked === 'first' ? 'checked' : 'unchecked'}
                                 onPress={() => { this.setState({ checked: 'first' }); }}
                             />
-                            <View style={{ borderWidth: 1, marginHorizontal: 20, borderColor: '#F4F4F5', margin: 10 }}></View>
+                            <View style={{ borderWidth: 1, marginHorizontal: 20, borderColor: colors.snow, margin: 10 }}></View>
                             <RadioButton
                             title='2'
                                 value="second"
@@ -104,20 +99,12 @@ export default class UnProduit extends Component {
 
             <View
               style={{
-                backgroundColor: "#F4F4F5",
+                backgroundColor: colors.snow,
                 padding: metrics.smallMargin,
                 marginTop: metrics.smallMargin
               }}
             >
-              <Text
-                style={{
-                  color: colors.grey,
-                  fontWeight: "bold",
-                  fontSize: scale(18)
-                }}
-              >
-                Instructions spécifiques
-              </Text>
+              <Text style={styles.instr}>Instructions spécifiques</Text>
             </View>
             <TextInput
               style={styles.input}
@@ -126,43 +113,28 @@ export default class UnProduit extends Component {
 
             <View style={styles.trait} />
 
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignContent: "center",
-                alignItems: "center"
-              }}
-            >
+            <View style={styles.count}>
               <Avatar
                 size="medium"
                 rounded
-                overlayContainerStyle={{ backgroundColor: "#DC6554" }}
+                overlayContainerStyle={{ backgroundColor: colors.yellow2 }}
                 title="-"
-                onPress={() => this.onDecrease()}
+                onPress={this.onDecrease}
                 activeOpacity={0.8}
               />
-              <Text
-                style={{
-                  color: colors.grey,
-                  fontWeight: "bold",
-                  fontSize: scale(20)
-                }}
-              >
-                {this.state.count}
-              </Text>
+              <Text style={styles.value}>{this.state.count}</Text>
               <Avatar
                 size="medium"
                 rounded
-                overlayContainerStyle={{ backgroundColor: "#4CB967" }}
+                overlayContainerStyle={{ backgroundColor: colors.darkGreen }}
                 title="+"
-                onPress={() => this.onIncrease()}
+                onPress={this.onIncrease}
                 activeOpacity={0.8}
               />
             </View>
-            <TouchableOpacity activeOpacity={0.8} onPress={() => this.onAdd()}>
+            <TouchableOpacity activeOpacity={0.8} onPress={this.onAdd}>
               <Text style={styles.greenbutton}>
-                Ajouter {this.state.count} au panier {prix * this.state.count}{" "}
+                Ajouter {this.state.count} au panier {prix * this.state.count}
               </Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
@@ -174,28 +146,26 @@ export default class UnProduit extends Component {
 const styles = StyleSheet.create({
   container: {
     height: metrics.height,
-    width: metrics.width,
-    marginTop: scale(24)
+    width: metrics.width
   },
   trait: {
     borderWidth: 1,
     marginHorizontal: metrics.baseMargin,
-    borderColor: "#F4F4F5",
-    marginBottom: 10
+    borderColor: colors.snow,
+    marginBottom: metrics.smallMargin
   },
   greenbutton: {
     width: metrics.width,
-    height: metrics.doubleBaseMargin,
     backgroundColor: colors.green,
     borderRadius: 1,
     color: colors.white,
-    fontSize: scale(15),
-    fontWeight: "bold",
-    paddingVertical: metrics.smallMargin,
+    fontSize: scale(16),
+    paddingVertical: metrics.mediumMargin,
     paddingHorizontal: metrics.baseMargin,
     textAlign: "center",
     alignItems: "center",
-    marginTop: metrics.smallMargin
+    fontFamily: "proximaNovaBold",
+    marginTop: metrics.baseMargin
   },
   image: {
     height: scale(300),
@@ -206,37 +176,44 @@ const styles = StyleSheet.create({
     left: metrics.smallMargin,
     top: metrics.doubleMediumMargin
   },
+  instr: {
+    color: colors.grey,
+    fontSize: scale(18),
+    fontFamily: "proximaNovaBold"
+  },
   view1: {
     alignContent: "center",
     alignItems: "center",
     margin: metrics.smallMargin
   },
   name: {
-    fontWeight: "bold",
     fontSize: scale(20),
-    color: "#232323"
+    color: colors.black,
+    fontFamily: "proximaNovaBold"
   },
   des: {
-    color: "#757575"
+    color: colors.grey,
+    fontFamily: "proximaNovaReg"
   },
   view2: {
-    backgroundColor: "#F4F4F5",
+    backgroundColor: colors.snow,
     padding: metrics.smallMargin,
     flexDirection: "row",
     justifyContent: "space-between"
   },
   text: {
     color: colors.grey,
-    fontWeight: "bold",
-    fontSize: scale(18)
+    fontSize: scale(18),
+    fontFamily: "proximaNovaBold"
   },
   obl: {
-    backgroundColor: "#808080",
+    backgroundColor: colors.grey4,
     borderRadius: scale(20),
     borderWidth: 1,
-    borderColor: "#808080",
+    borderColor: colors.grey4,
     padding: scale(3),
-    color: colors.white
+    color: colors.white,
+    fontFamily: "proximaNovaReg"
   },
   input: {
     width: "90%",
@@ -244,5 +221,16 @@ const styles = StyleSheet.create({
     alignContent: "center",
     margin: metrics.baseMargin,
     marginVertical: metrics.smallMargin
+  },
+  count: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignContent: "center",
+    alignItems: "center"
+  },
+  value: {
+    color: colors.grey,
+    fontSize: scale(20),
+    fontFamily: "proximaNovaBold"
   }
 });

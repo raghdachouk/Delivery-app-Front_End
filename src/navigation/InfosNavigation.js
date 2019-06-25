@@ -2,38 +2,48 @@ import {
   createBottomTabNavigator,
   createStackNavigator
 } from "react-navigation";
+import React from "react";
 
 import RestaurantDetails from "../containers/restaurant/RestoDetail";
 import RestaurantAvis from "../containers/restaurant/RestoAvis";
 import RestaurantMenu from "../containers/restaurant/RestoMenu";
+
 import UnProduit from "../components/infoResto/Menu/UnProduit";
 import Panier from "../components/infoResto/Menu/Panier";
+import Avancement from "../components/infoResto/Menu/Avancement";
+import Title from "../components/common/Title";
+
 import colors from "../themes/colors";
 import { scale } from "../helpers/functions";
-import Avancement from "../components/infoResto/Menu/Avancement";
+import { metrics } from "../themes";
+// const details = createStackNavigator({
+//   RestaurantDetails: {
+//     screen: RestaurantDetails,
+//     navigationOptions: {
+//     	headerTitle: <Title title={'Menu'} />
+//     }
+//   }
+// });
 const Menu = createStackNavigator({
   RestaurantMenu: {
     screen: RestaurantMenu,
-    navigationOptions: {
-      header: null
-    }
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: <Title title={"Menu"} navigate={navigation} />
+    })
   },
   Unprod: {
-    screen: UnProduit,
-    navigationOptions: {
-      header: null
-    }
+    screen: UnProduit
   },
   Avancement: {
     screen: Avancement,
     navigationOptions: {
-      header: null
+      headerTitle: <Title title={"Etat d'avancement"} />
     }
   },
   Panier: {
     screen: Panier,
     navigationOptions: {
-      header: null
+      headerTitle: <Title title={"Mon panier"} />
     }
   }
 });
@@ -41,15 +51,24 @@ const infosNavigation = createBottomTabNavigator(
   {
     RestaurantDetails: {
       screen: RestaurantDetails,
-      navigationOptions: { tabBarLabel: "Détails" }
+      navigationOptions: {
+        tabBarLabel: "Détails"
+        //Title: <Title title={'Détails'} />
+      }
     },
     RestaurantMenu: {
       screen: Menu,
-      navigationOptions: { tabBarLabel: "Menu" }
+      navigationOptions: {
+        tabBarLabel: "Menu",
+        header: null
+      }
     },
     RestaurantAvis: {
       screen: RestaurantAvis,
-      navigationOptions: { tabBarLabel: "Avis" }
+      navigationOptions: {
+        tabBarLabel: "Avis"
+        //headerTitle: <Title title={'Détails'} />
+      }
     }
   },
   {
@@ -65,7 +84,7 @@ const infosNavigation = createBottomTabNavigator(
         borderColor: colors.green
       },
       tabStyle: {
-        height: 40
+        height: metrics.doubleBaseMargin
       },
 
       style: {

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import metrics from "../../themes/metrics";
-import colors from "../../themes/colors";
+
+import { metrics, colors } from "../../themes";
 import { scale } from "../../helpers/functions";
+import icons from "../../themes/icons";
+
 export default class Dietetique extends Component {
   constructor(props) {
     super(props);
@@ -13,33 +15,21 @@ export default class Dietetique extends Component {
       pressed3: false
     };
   }
-  onPressed1() {
-    this.setState(
-      { pressed1: !pressed1 },
-      { pressed2: false },
-      { pressed3: false }
-    );
-  }
-  onPressed2() {
-    this.setState(
-      { pressed2: !pressed2 },
-      { pressed1: false },
-      { pressed3: false }
-    );
-  }
-  onPressed3() {
-    this.setState(
-      { pressed3: !pressed3 },
-      { pressed1: false },
-      { pressed2: false }
-    );
-  }
+  onPressed1 = () => {
+    this.setState({ pressed1: true, pressed2: false, pressed3: false });
+  };
+  onPressed2 = () => {
+    this.setState({ pressed2: true, pressed1: false, pressed3: false });
+  };
+  onPressed3 = () => {
+    this.setState({ pressed3: true, pressed1: false, pressed2: false });
+  };
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity activeOpacity={0.8} onPress={this.onPressed1}>
           <View style={styles.view1}>
-            <Icon name="star" size={scale(20)} color={colors.light} />
+            <Image source={icons.herbes} />
             <Text style={styles.text1}>Végétarien</Text>
             {this.state.pressed1 && (
               <Icon
@@ -53,7 +43,7 @@ export default class Dietetique extends Component {
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.8} onPress={this.onPressed2}>
           <View style={styles.view1}>
-            <Icon name="timer" size={scale(20)} color={colors.light} />
+            <Image source={icons.v} />
             <Text style={styles.text1}>Vegan</Text>
             {this.state.pressed2 && (
               <Icon
@@ -67,7 +57,7 @@ export default class Dietetique extends Component {
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.8} onPress={this.onPressed3}>
           <View style={styles.view1}>
-            <Icon name="timer" size={scale(20)} color={colors.light} />
+            <Image source={icons.gluten} />
             <Text style={styles.text1}>Sans glutan</Text>
             {this.state.pressed3 && (
               <Icon
@@ -98,7 +88,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     justifyContent: "space-around",
-    padding: metrics.smallMargin
+    padding: metrics.baseMargin
   },
   view1: {
     flexDirection: "row",
@@ -106,14 +96,14 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: colors.grey,
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     marginLeft: metrics.smallMargin
   },
   view2: {
     borderWidth: 1.2,
     borderColor: colors.backGrey,
     marginHorizontal: metrics.doubleMediumMargin,
-    marginTop: metrics.xsmallMargin
+    marginTop: metrics.doubleMediumMargin
   },
   finish: {
     alignItems: "center",
@@ -121,7 +111,7 @@ const styles = StyleSheet.create({
   },
   textFinish: {
     fontSize: scale(16),
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     color: colors.grey
   }
 });

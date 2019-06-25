@@ -3,11 +3,12 @@ import {
   View,
   Image,
   StyleSheet,
-  Dimensions,
   Text,
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import PropTypes from "prop-types";
+
 import metrics from "../../../themes/metrics";
 import colors from "../../../themes/colors";
 import { scale } from "../../../helpers/functions";
@@ -57,11 +58,26 @@ const listMenu = [
   }
 ];
 export default class Formules extends Component {
+  static propTypes = {
+    navigate: PropTypes.object.isRequired,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    prix: PropTypes.number,
+    desp: PropTypes.string
+  };
   constructor(props) {
     super(props);
   }
-  render() {
+  onpress = item => {
     const { navigate } = this.props.navigate;
+    navigate("Unprod", {
+      image: item.image,
+      name: item.name,
+      prix: item.prix,
+      desp: item.desp
+    });
+  };
+  render() {
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -69,14 +85,7 @@ export default class Formules extends Component {
             <TouchableOpacity
               key={i}
               activeOpacity={0.8}
-              onPress={() =>
-                navigate("Unprod", {
-                  image: item.image,
-                  name: item.name,
-                  prix: item.prix,
-                  desp: item.desp
-                })
-              }
+              onPress={this.onpress.bind(this, item)}
             >
               <View style={styles.cardStyle}>
                 <View>
@@ -89,7 +98,7 @@ export default class Formules extends Component {
                   <Text style={styles.name} numberOfLines={2}>
                     {item.name}
                   </Text>
-                  <Text style={{ color: colors.dimGrey2 }} numberOfLines={3}>
+                  <Text style={styles.desp} numberOfLines={3}>
                     {item.desp}
                   </Text>
                 </View>
@@ -129,10 +138,14 @@ const styles = StyleSheet.create({
     marginLeft: metrics.smallMargin
   },
   name: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     fontSize: scale(18),
     color: colors.grey,
     marginRight: metrics.doubleBaseMargin
+  },
+  desp: {
+    color: colors.dimGrey2,
+    fontFamily: "proximaNovaBold"
   },
   view: {
     justifyContent: "space-around",
@@ -146,7 +159,7 @@ const styles = StyleSheet.create({
     top: metrics.baseMargin
   },
   prix: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     color: colors.green
   }
 });

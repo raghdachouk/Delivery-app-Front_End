@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { NativeRouter, Route, Link } from "react-router-native";
+import { StyleSheet } from "react-native";
+import PropTypes from "prop-types";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 
 import Title from "../components/common/Title";
 import Encours from "../components/commandes/Encours";
@@ -13,104 +14,78 @@ import { scale } from "../helpers/functions";
 const width = metrics.width;
 
 export default class Commandes extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  };
   static navigationOptions = {
     headerTitle: <Title />
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      toggle1: true,
-      toggle2: false,
-      toggle3: false
-    };
-    this.onPress1 = this.onPress1.bind(this);
-    this.onPress2 = this.onPress2.bind(this);
-    this.onPress3 = this.onPress3.bind(this);
-  }
-  onPress1() {
-    this.setState({
-      toggle1: true,
-      toggle2: false,
-      toggle3: false
-    });
-  }
-  onPress2() {
-    this.setState({
-      toggle1: false,
-      toggle2: true,
-      toggle3: false
-    });
-  }
-  onPress3() {
-    this.setState({
-      toggle1: false,
-      toggle2: false,
-      toggle3: true
-    });
-  }
-  render() {
-    const { navigate } = this.props.navigate;
+  state = {
+    index: 0,
+    routes: [
+      { key: "passees", title: "PASSEES" },
+      { key: "encours", title: "EN COURS" },
+      { key: "avenir", title: "A VENIR" }
+    ]
+  };
+  passee = () => {
+    return <Passees navigation={this.props.navigation} />;
+  };
+  enCours = () => {
+    return <Encours navigation={this.props.navigation} />;
+  };
+  onIndex = index => {
+    this.setState({ index });
+  };
+  renderTab = props => {
     return (
-      <View>
-        <NativeRouter>
-          <View>
-            <View style={styles.nav}>
-              <Link to="/" onPress={this.onPress1}>
-                <Text
-                  style={[
-                    styles.notpressedtext,
-                    this.state.toggle1 && styles.pressedtext
-                  ]}
-                >
-                  PASSEES
-                </Text>
-              </Link>
-              <Link to="/Encours" onPress={this.onPress2}>
-                <Text
-                  style={[
-                    styles.notpressedtext,
-                    this.state.toggle2 && styles.pressedtext
-                  ]}
-                >
-                  EN COURS
-                </Text>
-              </Link>
-              <Link to="/Avenir" onPress={this.onPress3}>
-                <Text
-                  style={[
-                    styles.notpressedtext,
-                    this.state.toggle3 && styles.pressedtext
-                  ]}
-                >
-                  A VENIR
-                </Text>
-              </Link>
-            </View>
-            <View>
-              <Route
-                exact
-                path="/"
-                component={() => <Passees navigate={navigate} />}
-              />
-              <Route
-                path="/Encours"
-                component={() => <Encours navigate={navigate} />}
-              />
-              <Route
-                path="/Avenir"
-                component={() => <Avenir navigate={navigate} />}
-              />
-            </View>
-          </View>
-        </NativeRouter>
-      </View>
+      <TabBar
+        {...props}
+        indicatorStyle={styles.indicator}
+        labelStyle={styles.label}
+        activeColor={colors.grey}
+        inactiveColor={colors.lightGrey2}
+        tabStyle={styles.tabStyle}
+        style={styles.tab}
+      />
+    );
+  };
+  render() {
+    return (
+      <TabView
+        style={styles.nav}
+        navigationState={this.state}
+        renderScene={SceneMap({
+          passees: this.passee,
+          encours: this.enCours,
+          avenir: Avenir
+        })}
+        renderTabBar={this.renderTab}
+        onIndexChange={this.onIndex}
+        initialLayout={{ width: metrics.width }}
+      />
     );
   }
 }
 const styles = StyleSheet.create({
+  tabStyle: {
+    opacity: 1,
+    elevation: 0
+  },
+  tab: {
+    backgroundColor: colors.grey2,
+    elevation: 0
+  },
+  label: {
+    fontSize: scale(15),
+    fontFamily: "proximaNovaBold"
+  },
+
   nav: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    width: metrics.width
+  },
+  indicator: {
+    backgroundColor: colors.DimGray
   },
   pressedtext: {
     width: width / 3,
@@ -119,7 +94,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     color: colors.grey,
     fontSize: scale(13),
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     padding: metrics.mediumMargin,
     textAlign: "center"
   },
@@ -130,7 +105,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     color: colors.lightGrey2,
     fontSize: scale(13),
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     padding: metrics.mediumMargin,
     textAlign: "center"
   }

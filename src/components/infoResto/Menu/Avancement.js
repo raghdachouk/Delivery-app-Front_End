@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  TouchableHighlight,
-  StyleSheet
-} from "react-native";
-//import Modal from 'react-native-modalbox';
-import Modal from "react-native-modal";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import ModalRecu from "./ModalRecu";
 import colors from "../../../themes/colors";
@@ -17,11 +8,8 @@ import { scale } from "../../../helpers/functions";
 export default class Avancement extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isModalVisible: false
-    };
   }
-  _toggleModal = () => this.setState({ isModalVisible: true });
+
   render() {
     return (
       <View>
@@ -48,19 +36,6 @@ export default class Avancement extends Component {
           <View style={styles.commande}>
             <Text style={styles.info}>INFORMATIONS SUR LA COMMANDE</Text>
             <View style={styles.comm}>
-              <Text style={styles.titre}>
-                <Text style={styles.number}>1x </Text> Plat de lasagne
-              </Text>
-              <View style={styles.viewPrix}>
-                <Text style={styles.titre}>TOTAL : 18.00 € </Text>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={this._toggleModal}
-                >
-                  <Text style={styles.recu}>Voir le recu</Text>
-                </TouchableOpacity>
-              </View>
-
               <ModalRecu />
             </View>
           </View>
@@ -79,20 +54,20 @@ const styles = StyleSheet.create({
     width: scale(320)
   },
   title: {
-    fontWeight: "bold",
     fontSize: scale(20),
     color: colors.grey,
-    margin: metrics.baseMargin
+    margin: metrics.baseMargin,
+    fontFamily: "proximaNovaBold"
   },
   avance: {
-    fontWeight: "bold",
     fontSize: scale(18),
-    color: colors.grey3
+    color: colors.grey3,
+    fontFamily: "proximaNovaBold"
   },
   time: {
-    fontWeight: "bold",
     fontSize: scale(22),
-    color: colors.grey
+    color: colors.grey,
+    fontFamily: "proximaNovaBold"
   },
   trait: {
     borderWidth: 2,
@@ -107,9 +82,9 @@ const styles = StyleSheet.create({
     marginVertical: metrics.mediumMargin
   },
   enLivraison: {
-    fontWeight: "bold",
     fontSize: scale(20),
-    color: colors.grey
+    color: colors.grey,
+    fontFamily: "proximaNovaBold"
   },
   viewDetail: {
     paddingLeft: scale(25),
@@ -118,10 +93,11 @@ const styles = StyleSheet.create({
   detail: {
     margin: metrics.xsmallMargin,
     color: colors.grey3,
-    fontSize: scale(16)
+    fontSize: scale(16),
+    fontFamily: "proximaNovaReg"
   },
   info: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     color: colors.grey3,
     fontSize: scale(17),
     marginLeft: metrics.doubleMediumMargin,
@@ -139,22 +115,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: metrics.doubleMediumMargin
   },
   titre: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     fontSize: scale(16),
     color: colors.grey
-  },
-  number: {
-    color: colors.darkGreen,
-    fontSize: scale(16)
-  },
-  viewPrix: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: metrics.doubleMediumMargin
-  },
-  recu: {
-    fontWeight: "bold",
-    fontSize: scale(16),
-    color: colors.grey3
   }
 });

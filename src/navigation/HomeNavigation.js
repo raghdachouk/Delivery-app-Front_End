@@ -1,22 +1,43 @@
+import React from "react";
 import { createStackNavigator } from "react-navigation";
-import Home from "../components/tabFeature/Home";
-import InfosNavigation from "./InfosNavigation";
 
-const infosNavigation = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      header: null,
-      tabBarVisible: false
+import InfosNavigation from "./InfosNavigation";
+import DetailLivraison from "../containers/DetailLivration";
+import TabHome from "../containers/TabHome";
+import HeaderSearch from "../components/common/HeaderSearch";
+
+const infosNavigation = createStackNavigator(
+  {
+    Home: {
+      screen: TabHome,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: <HeaderSearch navigation={navigation} />
+      })
+    },
+    info: {
+      screen: InfosNavigation,
+      navigationOptions: {
+        header: null
+      }
+    },
+    DetailLivraison: {
+      screen: DetailLivraison
     }
   },
-  info: {
-    screen: InfosNavigation,
-    navigationOptions: {
-      header: null,
-      tabBarVisible: false
+  {
+    defaultNavigationOptions: {
+      //	header: ({ navigation }) => <HeaderSearch nav={navigation} />,
+
+      headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+        shadowOffset: {
+          height: 0
+        },
+        shadowRadius: 0
+      }
     }
   }
-});
+);
 
 export default infosNavigation;

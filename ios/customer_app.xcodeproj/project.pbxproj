@@ -59,6 +59,20 @@
 		E8C5F85BD7324AE2B647C26C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1808C230BC744EA18DB27A3D /* Octicons.ttf */; };
 		B2B4ED641DAC456F87952831 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2DE6085794152A998D851 /* SimpleLineIcons.ttf */; };
 		B1BED49E69C84A29B8E33044 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4D8CF50D3F64F97BEAA4C40 /* Zocial.ttf */; };
+		42CAEA1209D04166B1085E67 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F21EBE277544C48E04AA2B /* libRNReanimated.a */; };
+		C46505640FAD4E5087C05476 /* vincHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 707337FBE7BA4CCCBC2B1832 /* vincHand.ttf */; };
+		236F3BD2CA3B474B8EBB8163 /* Proxima Nova Alt Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC6FA0F1F77B490986CFAA79 /* Proxima Nova Alt Bold.otf */; };
+		5191E11A27344592ACA49B22 /* Proxima Nova Alt Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26CF71CED8E64CA58867A99C /* Proxima Nova Alt Light.otf */; };
+		B1A1133095B544B68380144A /* Proxima Nova Alt Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CBFDA34FC924874A48D47BB /* Proxima Nova Alt Thin.otf */; };
+		6392F5B81A2D44738FA82488 /* Proxima Nova Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C2B369E78E1D4D70BC9A5CEF /* Proxima Nova Black.otf */; };
+		87EBEE9278EC447A821F3BDD /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF99B6787CC40269E89DC57 /* Proxima Nova Bold.otf */; };
+		239D3135BBA048C89ECD32A5 /* Proxima Nova Extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4D5456988D7F46CA845CD2DF /* Proxima Nova Extrabold.otf */; };
+		F0B7B5A25630462DB80EE856 /* Proxima Nova Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6B462D74C2E744DDA4F21975 /* Proxima Nova Thin.otf */; };
+		29ACC7DCB21848638D48365B /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C71E476CFCFF4CFAB445BE66 /* ProximaNova-Regular.otf */; };
+		D020F07EFD79499D83463B97 /* FontsFree-Net-Proxima-Nova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D95A6A2E8B14696A6F68274 /* FontsFree-Net-Proxima-Nova-Bold.otf */; };
+		A29650A74A514C339A5F54B1 /* proximanova.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03D610D2618F44EFAA490FAC /* proximanova.ttf */; };
+		A68988E48A6F445094FA3794 /* proximaNovaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 993166372A0E41FEB1F6FE8C /* proximaNovaBold.ttf */; };
+		9BE645F551164D8AADE9ED3F /* proximaNovaReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F13D1798AB3C438C965A8719 /* proximaNovaReg.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,6 +403,21 @@
 		1808C230BC744EA18DB27A3D /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9FD2DE6085794152A998D851 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D4D8CF50D3F64F97BEAA4C40 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F2FE5F969324F7EB2E1EEEE /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; name = "RNReanimated.xcodeproj"; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		90F21EBE277544C48E04AA2B /* libRNReanimated.a */ = {isa = PBXFileReference; name = "libRNReanimated.a"; path = "libRNReanimated.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		707337FBE7BA4CCCBC2B1832 /* vincHand.ttf */ = {isa = PBXFileReference; name = "vincHand.ttf"; path = "../src/themes/fonts/vincHand.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BC6FA0F1F77B490986CFAA79 /* Proxima Nova Alt Bold.otf */ = {isa = PBXFileReference; name = "Proxima Nova Alt Bold.otf"; path = "../src/themes/fonts/Proxima Nova Alt Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		26CF71CED8E64CA58867A99C /* Proxima Nova Alt Light.otf */ = {isa = PBXFileReference; name = "Proxima Nova Alt Light.otf"; path = "../src/themes/fonts/Proxima Nova Alt Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4CBFDA34FC924874A48D47BB /* Proxima Nova Alt Thin.otf */ = {isa = PBXFileReference; name = "Proxima Nova Alt Thin.otf"; path = "../src/themes/fonts/Proxima Nova Alt Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C2B369E78E1D4D70BC9A5CEF /* Proxima Nova Black.otf */ = {isa = PBXFileReference; name = "Proxima Nova Black.otf"; path = "../src/themes/fonts/Proxima Nova Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8FF99B6787CC40269E89DC57 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; name = "Proxima Nova Bold.otf"; path = "../src/themes/fonts/Proxima Nova Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4D5456988D7F46CA845CD2DF /* Proxima Nova Extrabold.otf */ = {isa = PBXFileReference; name = "Proxima Nova Extrabold.otf"; path = "../src/themes/fonts/Proxima Nova Extrabold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6B462D74C2E744DDA4F21975 /* Proxima Nova Thin.otf */ = {isa = PBXFileReference; name = "Proxima Nova Thin.otf"; path = "../src/themes/fonts/Proxima Nova Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C71E476CFCFF4CFAB445BE66 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; name = "ProximaNova-Regular.otf"; path = "../src/themes/fonts/ProximaNova-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1D95A6A2E8B14696A6F68274 /* FontsFree-Net-Proxima-Nova-Bold.otf */ = {isa = PBXFileReference; name = "FontsFree-Net-Proxima-Nova-Bold.otf"; path = "../src/themes/fonts/FontsFree-Net-Proxima-Nova-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		03D610D2618F44EFAA490FAC /* proximanova.ttf */ = {isa = PBXFileReference; name = "proximanova.ttf"; path = "../src/themes/fonts/proximanova.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		993166372A0E41FEB1F6FE8C /* proximaNovaBold.ttf */ = {isa = PBXFileReference; name = "proximaNovaBold.ttf"; path = "../src/themes/fonts/proximaNovaBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F13D1798AB3C438C965A8719 /* proximaNovaReg.ttf */ = {isa = PBXFileReference; name = "proximaNovaReg.ttf"; path = "../src/themes/fonts/proximaNovaReg.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +449,7 @@
 				170DE7D117384ACFA854DAE2 /* libRNGestureHandler.a in Frameworks */,
 				0B8BFA0C077D4ACE888E60CB /* libAirMaps.a in Frameworks */,
 				CF06A7F0812649E69B461AE1 /* libRNVectorIcons.a in Frameworks */,
+				42CAEA1209D04166B1085E67 /* libRNReanimated.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +646,7 @@
 				2525BBF40747441B91134E8D /* RNGestureHandler.xcodeproj */,
 				F61EDAE80EA340EF91EC09B9 /* AirMaps.xcodeproj */,
 				43A87CE5804F4534AD6D7079 /* RNVectorIcons.xcodeproj */,
+				0F2FE5F969324F7EB2E1EEEE /* RNReanimated.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -682,6 +713,19 @@
 				1808C230BC744EA18DB27A3D /* Octicons.ttf */,
 				9FD2DE6085794152A998D851 /* SimpleLineIcons.ttf */,
 				D4D8CF50D3F64F97BEAA4C40 /* Zocial.ttf */,
+				707337FBE7BA4CCCBC2B1832 /* vincHand.ttf */,
+				BC6FA0F1F77B490986CFAA79 /* Proxima Nova Alt Bold.otf */,
+				26CF71CED8E64CA58867A99C /* Proxima Nova Alt Light.otf */,
+				4CBFDA34FC924874A48D47BB /* Proxima Nova Alt Thin.otf */,
+				C2B369E78E1D4D70BC9A5CEF /* Proxima Nova Black.otf */,
+				8FF99B6787CC40269E89DC57 /* Proxima Nova Bold.otf */,
+				4D5456988D7F46CA845CD2DF /* Proxima Nova Extrabold.otf */,
+				6B462D74C2E744DDA4F21975 /* Proxima Nova Thin.otf */,
+				C71E476CFCFF4CFAB445BE66 /* ProximaNova-Regular.otf */,
+				1D95A6A2E8B14696A6F68274 /* FontsFree-Net-Proxima-Nova-Bold.otf */,
+				03D610D2618F44EFAA490FAC /* proximanova.ttf */,
+				993166372A0E41FEB1F6FE8C /* proximaNovaBold.ttf */,
+				F13D1798AB3C438C965A8719 /* proximaNovaReg.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1148,6 +1192,19 @@
 				E8C5F85BD7324AE2B647C26C /* Octicons.ttf in Resources */,
 				B2B4ED641DAC456F87952831 /* SimpleLineIcons.ttf in Resources */,
 				B1BED49E69C84A29B8E33044 /* Zocial.ttf in Resources */,
+				C46505640FAD4E5087C05476 /* vincHand.ttf in Resources */,
+				236F3BD2CA3B474B8EBB8163 /* Proxima Nova Alt Bold.otf in Resources */,
+				5191E11A27344592ACA49B22 /* Proxima Nova Alt Light.otf in Resources */,
+				B1A1133095B544B68380144A /* Proxima Nova Alt Thin.otf in Resources */,
+				6392F5B81A2D44738FA82488 /* Proxima Nova Black.otf in Resources */,
+				87EBEE9278EC447A821F3BDD /* Proxima Nova Bold.otf in Resources */,
+				239D3135BBA048C89ECD32A5 /* Proxima Nova Extrabold.otf in Resources */,
+				F0B7B5A25630462DB80EE856 /* Proxima Nova Thin.otf in Resources */,
+				29ACC7DCB21848638D48365B /* ProximaNova-Regular.otf in Resources */,
+				D020F07EFD79499D83463B97 /* FontsFree-Net-Proxima-Nova-Bold.otf in Resources */,
+				A29650A74A514C339A5F54B1 /* proximanova.ttf in Resources */,
+				A68988E48A6F445094FA3794 /* proximaNovaBold.ttf in Resources */,
+				9BE645F551164D8AADE9ED3F /* proximaNovaReg.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,16 +1340,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Debug;
@@ -1315,16 +1369,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Release;
@@ -1350,6 +1401,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Debug;
@@ -1374,6 +1426,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Release;
@@ -1404,16 +1457,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Debug;
@@ -1444,16 +1494,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Release;
@@ -1483,16 +1530,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Debug;
@@ -1522,16 +1566,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
 			name = Release;

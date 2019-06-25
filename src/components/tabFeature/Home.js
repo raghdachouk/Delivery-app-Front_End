@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  Platform
-} from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
+import PropTypes from "prop-types";
 
 import UnResto from "../../containers/UnResto";
 
@@ -19,7 +14,7 @@ const data = [
     type: "RESTAURANT",
     star: 3,
     place: "Paris",
-    note: "5,2",
+    note: "3,2",
     status: "Fermé"
   },
   {
@@ -45,6 +40,14 @@ const data = [
 ];
 
 export default class Home extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    option: PropTypes.string
+  };
+  // static navigationOptions = ({ navigation }) => {
+  // 	// headerTitle instead of title
+  // 	return { headerTitle: <HeaderSearch navigation={navigation} /> };
+  // };
   constructor(props) {
     super(props);
     this.state = {
@@ -53,6 +56,7 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const { option } = this.props;
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
@@ -68,6 +72,7 @@ export default class Home extends React.Component {
               place={item.place}
               note={item.note}
               status={item.status}
+              option={option}
             />
           ))}
         </View>

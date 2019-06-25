@@ -23,13 +23,15 @@ import FormContainer from "../../components/common/FormContainer";
 const styles = StyleSheet.create({
   number: {
     ...fonts.h3,
-    fontWeight: "bold",
+    fontFamily: "proximaNovaReg",
     color: colors.grey
   },
   textYellow: {
+    fontFamily: "proximaNovaReg",
     color: colors.yellow
   },
   textGrey: {
+    fontFamily: "proximaNovaReg",
     color: colors.grey
   },
   input: {
@@ -38,13 +40,13 @@ const styles = StyleSheet.create({
   pb: {
     ...fonts.small,
     color: colors.green,
-    fontWeight: "bold"
+    fontFamily: "proximaNovaReg"
   },
   codeInput: {
     borderWidth: 1.5,
     fontSize: metrics.baseMargin,
     borderRadius: scale(5),
-    fontWeight: "bold"
+    fontFamily: "proximaNovaReg"
   },
   posPb: {
     marginTop: metrics.doubleBaseMargin,
@@ -168,7 +170,6 @@ export default class CodeTel extends React.PureComponent {
               </Text>
               <KeyboardAvoidingView style={styles.input}>
                 <CodeInput
-                  ref="codeInput"
                   value={code}
                   onFulfill={this.setCode}
                   codeLength={4}
@@ -195,7 +196,7 @@ export default class CodeTel extends React.PureComponent {
                   style={styles.posPb}
                   onPress={this.resendCode}
                 >
-                  <Text style={styles.pb}>J'ai pas reçu le code</Text>
+                  <Text style={styles.pb}>J&apos;ai pas reçu le code</Text>
                 </TouchableOpacity>
               )}
               <Button

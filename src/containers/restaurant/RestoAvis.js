@@ -5,23 +5,29 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Dimensions,
-  Button,
   KeyboardAvoidingView,
   ScrollView
 } from "react-native";
 import StarRating from "react-native-star-rating";
+import PropTypes from "prop-types";
+
 import metrics from "../../themes/metrics";
 import colors from "../../themes/colors";
 import { scale } from "../../helpers/functions";
 import TodoItems from "../TodoItems";
+import Title from "../../components/common/Title";
 
-const height = metrics.height;
 const width = metrics.width;
 export default class RestoAvis extends Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    title: PropTypes.string,
+    note: PropTypes.string,
+    star: PropTypes.number
+  };
   constructor(props) {
     super(props);
-    this.addView = this.addView.bind(this);
+    //this.addView = this.addView.bind(this);
     this.state = {
       starCount: 0,
       text: "",
@@ -32,14 +38,16 @@ export default class RestoAvis extends Component {
     };
   }
 
-  onStarRatingPress(rating) {
+  onStarRatingPress = rating => {
     this.setState({
       starCount: rating
     });
     //console.log(rating);
-  }
-
-  addView(e) {
+  };
+  onChange = text => {
+    this.setState({ text });
+  };
+  addView = e => {
     if (this.state.text !== "" && this.state.starCount !== 0) {
       var newItem = {
         key: Date.now(),
@@ -53,92 +61,97 @@ export default class RestoAvis extends Component {
           items: prevState.items.concat(newItem)
         };
       });
-      this.state.starCount = 0;
-      this.state.text = "";
-      this.state.review = "";
+      this.setState({ starCount: 0 });
+      this.setState({ text: "" });
+      this.setState({ review: "" });
+      // this.state.starCount = 0;
+      // this.state.text = '';
+      // this.state.review = '';
     }
 
     console.log(this.state.items);
 
     e.preventDefault();
-  }
-  onContentSizeChange = (contentWidth, contentHeight) => {
-    // Save the content height in state
-    this.setState({ screenHeight: contentHeight });
   };
   render() {
     const title = this.props.navigation.getParam("title", "NO-Category");
     const note = this.props.navigation.getParam("note", "NO-Category");
     const star = this.props.navigation.getParam("star", "NO-Category");
-    const scrollEnabled = this.state.screenHeight > height;
+    const navigate = this.props.navigation;
     return (
-      <ScrollView
-        onContentSizeChange={this.onContentSizeChange}
-        contentContainerStyle={{ flexGrow: 1 }}
-        //scrollEnabled={scrollEnabled}
-      >
-        <View style={styles.container}>
-          <View style={styles.view}>
-            <Text style={styles.title}>{title}</Text>
-            <StarRating
-              disabled={true}
-              maxStars={5}
-              rating={star}
-              emptyStar={"ios-star-outline"}
-              fullStar={"ios-star"}
-              halfStar={"ios-star-half"}
-              iconSet={"Ionicons"}
-              fullStarColor={colors.starYellow}
-              starSize={20}
-              emptyStarColor={colors.starGrey}
-            />
-            <Text style={styles.note}>{note}</Text>
-            <Text>Recommandé : 1300 personnes</Text>
-          </View>
-          <KeyboardAvoidingView
-            behavior="position"
-            keyboardVerticalOffset={70}
-            enabled
-          >
-            <View style={styles.recommande}>
-              <Text> Recommandez-vous {title} ?</Text>
+      <View>
+        <View style={{ height: scale(60) }}>
+          <Title title={"Avis"} navigate={navigate} />
+        </View>
+        <ScrollView
+          //onContentSizeChange={this.onContentSizeChange}
+          contentContainerStyle={{ flexGrow: 1 }}
+          //scrollEnabled={scrollEnabled}
+        >
+          <View style={styles.container}>
+            <View style={styles.view}>
+              <Text style={styles.title}>{title}</Text>
               <StarRating
-                emptyStarColor={colors.starGrey}
+                disabled={true}
                 maxStars={5}
-                rating={this.state.starCount}
-                fullStarColor={colors.starYellow}
+                rating={star}
                 emptyStar={"ios-star-outline"}
                 fullStar={"ios-star"}
                 halfStar={"ios-star-half"}
                 iconSet={"Ionicons"}
-                starSize={25}
-                selectedStar={rating => this.onStarRatingPress(rating)}
+                fullStarColor={colors.starYellow}
+                starSize={20}
+                emptyStarColor={colors.starGrey}
               />
-              <Text>{"\n"} Faites part de votre expérience </Text>
-              <Text>comment étaient les repas,l'atmosphère ?{"\n"} </Text>
+              <Text style={styles.note}>{note}</Text>
+              <Text>Recommandé : 1300 personnes</Text>
+            </View>
+            <KeyboardAvoidingView
+              behavior="position"
+              keyboardVerticalOffset={70}
+              enabled
+            >
+              <View style={styles.recommande}>
+                <Text> Recommandez-vous {title} ?</Text>
+                <StarRating
+                  emptyStarColor={colors.starGrey}
+                  maxStars={5}
+                  rating={this.state.starCount}
+                  fullStarColor={colors.starYellow}
+                  emptyStar={"ios-star-outline"}
+                  fullStar={"ios-star"}
+                  halfStar={"ios-star-half"}
+                  iconSet={"Ionicons"}
+                  starSize={25}
+                  selectedStar={this.onStarRatingPress}
+                />
+                <Text>{"\n"} Faites part de votre expérience </Text>
+                <Text>
+                  comment étaient les repas,l&apos;atmosphère ?{"\n"}{" "}
+                </Text>
 
-              <TextInput
-                ref={a => (this._inputElement = a)}
-                placeholder="votre avis "
-                underlineColorAndroid="transparent"
-                placeholderTextColor="#848484"
-                style={styles.input}
-                onChangeText={text => this.setState({ text })}
-                value={this.state.text}
-              />
-              <TouchableOpacity onPress={this.addView} activeOpacity={0.8}>
-                <Text style={styles.greenbutton}> ENVOYER</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.backItems}>
-              <TodoItems
-                entries={this.state.items}
-                starCount={this.state.starCount}
-              />
-            </View>
-          </KeyboardAvoidingView>
-        </View>
-      </ScrollView>
+                <TextInput
+                  placeholder="votre avis "
+                  underlineColorAndroid="transparent"
+                  placeholderTextColor="#848484"
+                  style={styles.input}
+                  onChangeText={this.onChange}
+                  value={this.state.text}
+                />
+                <TouchableOpacity onPress={this.addView} activeOpacity={0.8}>
+                  <Text style={styles.greenbutton}> ENVOYER</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.backItems}>
+                <TodoItems
+                  entries={this.state.items}
+                  starCount={this.state.starCount}
+                />
+              </View>
+            </KeyboardAvoidingView>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -150,8 +163,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.green,
     borderRadius: 1,
     color: colors.white,
-    fontSize: scale(15),
-    fontWeight: "bold",
+    fontSize: scale(16),
+    fontFamily: "proximaNovaBold",
     paddingVertical: metrics.smallMargin,
     paddingHorizontal: metrics.baseMargin,
     textAlign: "center",
@@ -171,11 +184,12 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   title: {
-    color: colors.grey
+    color: colors.grey,
+    fontFamily: "proximaNovaReg"
   },
   note: {
     color: colors.starYellow,
-    fontWeight: "bold"
+    fontFamily: "proximaNovaBold"
   },
   recommande: {
     backgroundColor: colors.white,
@@ -188,7 +202,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: "#F4F4F4",
     height: scale(45),
-    width: width - scale(120)
+    width: width - scale(120),
+    fontFamily: "proximaNovaReg"
   },
   backItems: {
     backgroundColor: colors.backGrey

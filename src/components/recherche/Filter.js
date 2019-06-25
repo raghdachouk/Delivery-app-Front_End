@@ -1,126 +1,92 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
-import { NativeRouter, Route, Link } from "react-router-native";
+import { StyleSheet, View } from "react-native";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 
 import Trier from "./Trier";
-import Prix from "./Prix";
 import Dietetique from "./Dietetique";
+
 import metrics from "../../themes/metrics";
 import colors from "../../themes/colors";
 import { scale } from "../../helpers/functions";
 
-export default class Filter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      toggle1: true,
-      toggle2: false,
-      toggle3: false
-    };
-  }
-  render() {
-    //const { navigate } = this.props;
+// const retweet = () => {
+//   <View>
+//     <TouchableOpacity activeOpacity={0.8} onPress={this.onFilter}>
+//       <Icon
+//         name="twitter-retweet"
+//         size={scale(32)}
+//         color={colors.grey}
+//         style={styles.icon}
+//       />
+//     </TouchableOpacity>
+//   </View>;
+// };
 
+export default class Filter extends Component {
+  state = {
+    index: 0,
+    routes: [
+      { key: "Trier", title: "Trier" },
+      { key: "Dietetique", title: "Dietetique" }
+    ]
+  };
+  onIndex = index => {
+    this.setState({ index });
+  };
+  renderTab = props => {
+    return (
+      <TabBar
+        {...props}
+        labelStyle={styles.label}
+        indicatorStyle={styles.indicator}
+        activeColor={colors.grey}
+        inactiveColor={colors.light2}
+        tabStyle={styles.tabStyle}
+        style={styles.tab}
+      />
+    );
+  };
+  render() {
     return (
       <View>
-        <NativeRouter>
-          <View>
-            <View style={styles.nav}>
-              <Link
-                to="/"
-                onPress={() =>
-                  this.setState({
-                    toggle1: true,
-                    toggle2: false,
-                    toggle3: false
-                  })
-                }
-              >
-                <Text
-                  style={[
-                    styles.notpressedtext,
-                    this.state.toggle1 && styles.pressedtext
-                  ]}
-                >
-                  Trier
-                </Text>
-              </Link>
-              <Link
-                to="/Prix"
-                onPress={() =>
-                  this.setState({
-                    toggle1: false,
-                    toggle2: true,
-                    toggle3: false
-                  })
-                }
-              >
-                <Text
-                  style={[
-                    styles.notpressedtext,
-                    this.state.toggle2 && styles.pressedtext
-                  ]}
-                >
-                  Prix
-                </Text>
-              </Link>
-              <Link
-                to="/Dietetique"
-                onPress={() =>
-                  this.setState({
-                    toggle1: false,
-                    toggle2: false,
-                    toggle3: true
-                  })
-                }
-              >
-                <Text
-                  style={[
-                    styles.notpressedtext,
-                    this.state.toggle3 && styles.pressedtext
-                  ]}
-                >
-                  Diètétique
-                </Text>
-              </Link>
-            </View>
-            <View>
-              <Route exact path="/" component={() => <Trier />} />
-              <Route path="/Prix" component={() => <Prix />} />
-              <Route path="/Dietetique" component={() => <Dietetique />} />
-            </View>
-          </View>
-        </NativeRouter>
+        <TabView
+          style={styles.nav}
+          navigationState={this.state}
+          renderScene={SceneMap({
+            Trier: Trier,
+            Dietetique: Dietetique,
+            retweet: null
+          })}
+          renderTabBar={this.renderTab}
+          onIndexChange={this.onIndex}
+          initialLayout={{ width: metrics.width }}
+        />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  nav: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end"
+  tabStyle: {
+    opacity: 1,
+    elevation: 0
   },
-  pressedtext: {
-    width: metrics.width / 3,
+  tab: {
     backgroundColor: colors.white,
-    color: colors.grey,
-    borderBottomWidth: 1,
-    borderColor: colors.backGrey,
-    fontSize: scale(17),
-    fontWeight: "bold",
-    padding: metrics.mediumMargin,
-    textAlign: "center"
+    elevation: 0
   },
-  notpressedtext: {
-    width: metrics.width / 3,
-    backgroundColor: colors.white,
-    color: colors.light2,
-    borderBottomWidth: 1,
-    borderColor: colors.white,
+  label: {
     fontSize: scale(16),
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold"
+  },
+  indicator: {
+    backgroundColor: colors.DimGray
+  },
+  nav: {
+    width: metrics.width
+  },
+  icon: {
+    width: metrics.width / 3,
     padding: metrics.mediumMargin,
     textAlign: "center"
   }

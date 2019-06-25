@@ -3,19 +3,18 @@ import {
   View,
   Image,
   StyleSheet,
-  Dimensions,
   Text,
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import PropTypes from "prop-types";
+
 import { Avatar } from "react-native-elements";
-import images from "../../themes/images";
 import metrics from "../../themes/metrics";
 import colors from "../../themes/colors";
 import { scale } from "../../helpers/functions";
 
 const width = metrics.width;
-const height = metrics.height;
 
 const datax = [
   {
@@ -60,26 +59,30 @@ const datax = [
 ];
 
 export default class ResultSearch extends Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    item: PropTypes.object,
+    star: PropTypes.number,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    image: PropTypes.string,
+    place: PropTypes.string,
+    note: PropTypes.string,
+    status: PropTypes.string
+  };
   constructor(props) {
     super(props);
-    this.fullEuro = images.euro;
-    this.emptyEuro = images.euroEmpty;
-    this.onPress = this.onPress.bind(this);
   }
-  ratingEuro = item => {
-    let React_Native_Rating_Bar = [];
-    for (var i = 1; i <= 4; i++) {
-      React_Native_Rating_Bar.push(
-        <Image
-          key={i}
-          style={styles.image}
-          source={i <= item.star ? this.fullEuro : null}
-        />
-      );
-    }
-    return React_Native_Rating_Bar;
-  };
-  onPress() {
+  // ratingEuro = (item) => {
+  // 	let React_Native_Rating_Bar = [];
+  // 	for (var i = 1; i <= 4; i++) {
+  // 		React_Native_Rating_Bar.push(
+  // 			<Image key={i} style={styles.image} source={i <= item.star ? this.fullEuro : null} />
+  // 		);
+  // 	}
+  // 	return React_Native_Rating_Bar;
+  // };
+  onpress = item => {
     this.props.navigation.navigate("info", {
       star: item.star,
       status: item.status,
@@ -89,7 +92,7 @@ export default class ResultSearch extends Component {
       place: item.place,
       type: item.type
     });
-  }
+  };
   render() {
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -99,17 +102,7 @@ export default class ResultSearch extends Component {
             <TouchableOpacity
               key={i}
               activeOpacity={0.8}
-              onPress={() =>
-                this.props.navigation.navigate("info", {
-                  star: item.star,
-                  status: item.status,
-                  note: item.note,
-                  image: item.image,
-                  title: item.title,
-                  place: item.place,
-                  type: item.type
-                })
-              }
+              onPress={this.onpress.bind(this, item)}
             >
               <View style={styles.cardStyle}>
                 <View>
@@ -135,14 +128,17 @@ export default class ResultSearch extends Component {
                   <Text
                     style={
                       item.status === "Ouvert"
-                        ? { fontWeight: "bold", color: colors.darkGreen }
-                        : { fontWeight: "bold", color: colors.red }
+                        ? {
+                            fontFamily: "proximaNovaBold",
+                            color: colors.darkGreen
+                          }
+                        : { fontFamily: "proximaNovaBold", color: colors.red }
                     }
                   >
                     {item.status}
                   </Text>
                 </View>
-                <View style={styles.rating}>{this.ratingEuro(item)}</View>
+                {/* <View style={styles.rating}>{this.ratingEuro(item)}</View> */}
               </View>
             </TouchableOpacity>
           ))}
@@ -161,7 +157,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: colors.grey,
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     fontSize: scale(17),
     margin: metrics.smallMargin
   },
@@ -169,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: metrics.width - 60,
     alignContent: "center",
-    height: scale(140),
+    height: scale(120),
     elevation: 3,
     flexDirection: "row",
     justifyContent: "space-around",
@@ -182,13 +178,13 @@ const styles = StyleSheet.create({
     resizeMode: "cover"
   },
   imageStyle: {
-    width: scale(120),
-    height: scale(140)
+    width: scale(110),
+    height: scale(120)
   },
   avatrPos: {
     position: "absolute",
-    left: metrics.largeMrgin,
-    top: scale(60)
+    left: scale(90),
+    top: scale(50)
   },
   textStyle2: {
     justifyContent: "space-around",
@@ -197,15 +193,16 @@ const styles = StyleSheet.create({
     margin: metrics.smallMargin
   },
   title: {
-    fontWeight: "bold",
+    fontFamily: "proximaNovaBold",
     fontSize: scale(18),
     color: colors.grey
   },
   type: {
     color: colors.dimGrey2,
-    fontWeight: "bold"
+    fontFamily: "proximaNovaBold"
   },
   time: {
+    fontFamily: "proximaNovaReg",
     color: colors.dimGrey2
   },
   rating: {
@@ -217,6 +214,6 @@ const styles = StyleSheet.create({
   stausPos: {
     position: "absolute",
     right: metrics.smallMargin,
-    bottom: scale(60)
+    top: metrics.doubleBaseMargin
   }
 });

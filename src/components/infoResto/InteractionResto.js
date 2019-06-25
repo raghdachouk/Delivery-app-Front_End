@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Image
-} from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+
 import colors from "../../themes/colors";
 import metrics from "../../themes/metrics";
 import { scale } from "../../helpers/functions";
@@ -16,6 +9,7 @@ import images from "../../themes/images";
 
 const width = metrics.width;
 const height = metrics.height;
+
 export default class InteractionResto extends Component {
   constructor(props) {
     super(props);
@@ -42,17 +36,17 @@ export default class InteractionResto extends Component {
         <View style={{ paddingTop: metrics.bigMargin }}>
           <Text style={styles.textStyle}>SELECTIONNEZ UN PROBLEME {"\n"}</Text>
         </View>
-        <TouchableOpacity activeOpacity={0.8}>
+        {/* <TouchableOpacity activeOpacity={0.8}>
           <Text style={styles.yellowbutton}>
             J'ai un problème avec une commande en cours
           </Text>
         </TouchableOpacity>
         <Text>{"\n"}</Text>
         <TouchableOpacity activeOpacity={0.8}>
-          <Text numberOfLines={2} style={styles.yellowbutton}>
-            J'ai eu un problème avec une commande terminée
-          </Text>
-        </TouchableOpacity>
+					<Text numberOfLines={2} style={styles.yellowbutton}>
+						J'ai eu un problème avec une commande terminée
+					</Text>
+				</TouchableOpacity> */}
       </View>
     );
   }
