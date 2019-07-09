@@ -1,4 +1,4 @@
 /* global __DEV__ */
 export default {
-  API_URL: "https://aacbba3c.ngrok.io"
+	API_URL: 'http://192.168.1.13:4000'
 };
