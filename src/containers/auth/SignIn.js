@@ -7,7 +7,8 @@ import {
 	ImageBackground,
 	Image,
 	KeyboardAvoidingView,
-	Keyboard
+	Keyboard,
+	BackHandler
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -85,8 +86,16 @@ export default class SignIn extends React.PureComponent {
 	componentDidMount() {
 		this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
 		this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+		this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+	}
+	componentWillUnmount() {
+		this.backHandler.remove();
 	}
 
+	handleBackPress = async () => {
+		await this.goBack(); // works best when the goBack is async
+		return true;
+	};
 	keyboardDidShow = () => {
 		this.setState({ keyboardVisibility: true });
 	};

@@ -2,42 +2,38 @@ import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { View, StyleSheet } from 'react-native';
 
-import { metrics, colors } from '../themes';
-import CodeConfirmation from './CodeConfirmation';
-export default class MapPanier extends React.Component {
-	state = {
-		success: '12345'
-	};
-	clean = () => {
-		this.setState({ success: null });
-	};
+import { metrics, colors } from '../../themes';
+
+export default class LocationResto extends React.Component {
 	render() {
+		const { latitude, longitude } = this.props.navigation.state.params;
 		return (
 			<View style={styles.map}>
 				<MapView
 					style={styles.styleMap}
 					region={{
-						latitude: 37.78825,
-						longitude: -122.4324,
-						latitudeDelta: 0.0922,
-						longitudeDelta: 0.081
+						latitude: latitude,
+						longitude: longitude,
+						latitudeDelta: 0.0322,
+						longitudeDelta: 0.0218
 					}}
 				>
 					<Marker
 						coordinate={{
-							latitude: 37.78825,
-							longitude: -122.4324
+							latitude: latitude,
+							longitude: longitude
 						}}
 						pinColor={colors.marker}
 					/>
 				</MapView>
-				<CodeConfirmation message={this.state.success} onDismiss={this.clean} />
 			</View>
 		);
 	}
 }
 const styles = StyleSheet.create({
 	map: {
+		// height: metrics.height,
+		// width: metrics.width
 		position: 'absolute',
 		top: 0,
 		left: 0,
