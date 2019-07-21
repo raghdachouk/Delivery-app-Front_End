@@ -9,36 +9,6 @@ import UnResto from '../../containers/UnResto';
 import colors from '../../themes/colors';
 import metrics from '../../themes/metrics';
 
-const data = [
-	{
-		image: 'https://nice.city-life.fr/images/fiche/1590/5810.jpg',
-		title: 'Factory',
-		type: 'RESTAURANT',
-		star: 3,
-		place: 'Paris',
-		note: '3,2',
-		status: 'Fermé'
-	},
-	{
-		image: 'https://www.lesmeilleursrestos.fr/702-tm_home_default/le-garden-besan%C3%A7on.jpg',
-		title: 'Tartella',
-		type: 'RESTAURANT',
-		star: 2,
-		place: 'Lyon',
-		note: '2,5',
-		status: 'Ouvert'
-	},
-	{
-		image: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/ac/35/5f/vue-de-la-salle.jpg',
-		title: 'Il Forno',
-		type: 'RESTAURANT',
-		star: 4,
-		place: 'Paris',
-		note: '4,5',
-		status: 'Ouvert'
-	}
-];
-
 export default class Home extends React.Component {
 	static propTypes = {
 		navigation: PropTypes.object.isRequired,
@@ -50,9 +20,6 @@ export default class Home extends React.Component {
 	// };
 	constructor(props) {
 		super(props);
-		this.state = {
-			data: data
-		};
 	}
 
 	render() {
@@ -82,6 +49,7 @@ export default class Home extends React.Component {
 				{({ loading, error, data }) => {
 					if (loading) return <Text>Loading ...</Text>;
 					if (error) return <Text>Connection error</Text>;
+					console.log(data);
 					return (
 						<ScrollView>
 							<View style={styles.container}>
@@ -101,6 +69,7 @@ export default class Home extends React.Component {
 										photo
 									}) => (
 										<UnResto
+											id={id}
 											key={id}
 											navigate={navigate}
 											description={description}

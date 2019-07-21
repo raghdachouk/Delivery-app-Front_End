@@ -1,4 +1,4 @@
-import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import React from 'react';
 
 import RestaurantDetails from '../containers/restaurant/RestoDetail';
@@ -22,29 +22,40 @@ import { metrics } from '../themes';
 //     }
 //   }
 // });
-const Menu = createStackNavigator({
-	RestaurantMenu: {
-		screen: RestaurantMenu,
-		navigationOptions: ({ navigation }) => ({
-			headerTitle: <Title title={'Menu'} navigate={navigation} />
-		})
-	},
-	Unprod: {
-		screen: UnProduit
-	},
-	Avancement: {
-		screen: Avancement,
-		navigationOptions: {
-			headerTitle: <Title title={"Etat d'avancement"} />
+// class MenuScreen extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 	}
+// 	render() {
+// 		console.log(this.props.id);
+// 		return <Menu id={this.props.id} />;
+// 	}
+// }
+const Menu = createAppContainer(
+	createStackNavigator({
+		RestaurantMenu: {
+			screen: () => <RestaurantMenu {...this.props} />,
+			navigationOptions: ({ navigation }) => ({
+				headerTitle: <Title title={'Menu'} navigate={navigation} />
+			})
+		},
+		Unprod: {
+			screen: UnProduit
+		},
+		Avancement: {
+			screen: Avancement,
+			navigationOptions: {
+				headerTitle: <Title title={"Etat d'avancement"} />
+			}
+		},
+		Panier: {
+			screen: Panier,
+			navigationOptions: {
+				headerTitle: <Title title={'Mon panier'} />
+			}
 		}
-	},
-	Panier: {
-		screen: Panier,
-		navigationOptions: {
-			headerTitle: <Title title={'Mon panier'} />
-		}
-	}
-});
+	})
+);
 
 const infosNavigation = createBottomTabNavigator(
 	{
@@ -56,10 +67,9 @@ const infosNavigation = createBottomTabNavigator(
 			}
 		},
 		RestaurantMenu: {
-			screen: Menu,
+			screen: RestaurantMenu,
 			navigationOptions: {
-				tabBarLabel: 'Menu',
-				header: null
+				tabBarLabel: 'Menu'
 			}
 		},
 		RestaurantAvis: {
@@ -93,5 +103,10 @@ const infosNavigation = createBottomTabNavigator(
 		}
 	}
 );
-
 export default infosNavigation;
+// export default class infosNavigation extends React.Component {
+// 	render() {
+
+// 		return <InfosNavigation {...this.props} />;
+// 	}
+// }

@@ -31,6 +31,7 @@ export default class UnResto extends React.Component {
 	onpress = () => {
 		const navigate = this.props.navigate;
 		navigate('info', {
+			id: this.props.id,
 			title: this.props.title,
 			type: this.props.type,
 			image: this.props.image,
