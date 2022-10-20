@@ -44,7 +44,7 @@
 		"react-native-modal": "^9.0.0",
 		"react-native-modal-datetime-picker": "^6.0.0",
 		"react-native-phone-call": "^1.0.9",
-		"react-native-reanimated": "^1.0.0",
+		"react-native-reanimated": "^2.10.0",
 		"react-native-star-rating": "^1.1.0",
 		"react-native-tab-view": "^2.0.3",
 		"react-native-vector-icons": "^6.4.1",
